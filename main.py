@@ -45,6 +45,9 @@ def find_longest_word_chain(request: WordChainRequest):
 # Serve static files from the "www" directory and set index.html as the default file
 app.mount("/api", app)
 app.mount("/", StaticFiles(directory="www", html=True), name="www")
+app.mount("/about", StaticFiles(directory="www", html=True), name="www")
+app.mount("/contact", StaticFiles(directory="www", html=True), name="www")
+app.mount("/word-chain", StaticFiles(directory="www", html=True), name="www")
 
 # Run the FastAPI app
 if __name__ == "__main__":
