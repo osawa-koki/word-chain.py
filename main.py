@@ -6,6 +6,7 @@ app = FastAPI()
 
 # Serve static files from the "www" directory and set index.html as the default file
 app.mount("/", StaticFiles(directory="www", html=True), name="www")
+app.mount("/api", app)
 
 # Set the host and port values
 host = "0.0.0.0"
