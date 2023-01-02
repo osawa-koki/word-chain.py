@@ -1,11 +1,11 @@
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import JSONResponse
+from fastapi.responses import HTMLResponse
 
 app = FastAPI()
 
-# Serve static files from the "static" directory
-app.mount("/", StaticFiles(directory="static"), name="static")
+# Serve static files from the "www" directory and set index.html as the default file
+app.mount("/", StaticFiles(directory="www", html=True), name="www")
 
 # Set the host and port values
 host = "0.0.0.0"
