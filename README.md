@@ -14,3 +14,9 @@ Pythonで最長しりとりを探してみる。
 ```shell
 uvicorn main:app
 ```
+
+Dockerを使用すると、、、  
+
+```shell
+docker build -t word-chain-py . && docker run -p 80:80 my-word-chain-py
+```
