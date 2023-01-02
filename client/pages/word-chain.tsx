@@ -52,7 +52,7 @@ const App: React.FC = () => {
             </Form.Group>
           ))}
           <div id="ButtonContainer">
-            <Button variant="secondary" onClick={handleAdd}>
+            <Button variant="secondary" onClick={handleAdd} disabled={30 <= words.length}>
               Add
             </Button>
             <Button variant="primary" type="submit">

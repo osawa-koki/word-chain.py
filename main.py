@@ -21,11 +21,15 @@ port = 80
 class WordChainRequest(BaseModel):
     words: List[str]
 
+LIMIT = 30
+
 # Define a route to handle the /api URL
 @app.post("/api/word-chain")
 def find_longest_word_chain(words: WordChainRequest) -> List[str]:
     words = words.words
     n = len(words)
+    if n > LIMIT:
+        raise HTTPException(status_code=400, detail=f"Too many words (max {LIMIT})")
     longest_chain = []
     for i in range(n):
         chain = [words[i]]
