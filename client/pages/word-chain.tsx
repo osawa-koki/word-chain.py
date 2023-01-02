@@ -22,7 +22,7 @@ const App: React.FC = () => {
 
   const sendData = async () => {
     const data = { words };
-    await fetch('/api', {
+    await fetch('/api/word-chain', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
