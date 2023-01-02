@@ -8,13 +8,13 @@ WORKDIR /app
 COPY client/package*.json ./
 
 # Install the dependencies
-RUN npm ci
+RUN yarn
 
 # Copy the rest of the code
 COPY client .
 
 # Build the Next.js app
-RUN npm run build
+RUN yarn build
 
 # Step 2: Start the FastAPI server
 FROM python:3.11.0-alpine as production-stage
