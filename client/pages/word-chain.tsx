@@ -12,7 +12,7 @@ const App: React.FC = () => {
   const [items, setItems] = useState<string[]>([]);
 
   useEffect(() => {
-    const words = words_template.sort(() => Math.random() - Math.random()).slice(0, 20);
+    const words = words_template.sort(() => Math.random() - Math.random()).slice(0, 30);
     setWords(words);
   }, []);
 
