@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Button, Container, Form, FormControl } from 'react-bootstrap';
+import { BsFillArrowRightSquareFill } from "react-icons/bs";
 
 const App: React.FC = () => {
   const [words, setWords] = useState<string[]>([]);
-  const [response, setResponse] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch('/api');
       const data = await res.json();
-      setResponse(JSON.stringify(data));
+      setWords(data.words);
     };
 
     fetchData();
@@ -66,8 +66,17 @@ const App: React.FC = () => {
               Submit
             </Button>
           </div>
+          <div id="Result">
+            {
+              words.map((word, index) => (
+                <>
+                  <p key={index}>{word}</p>
+                  <BsFillArrowRightSquareFill />
+                </>
+              ))
+            }
+          </div>
         </Form>
-        <pre>{response}</pre>
       </Container>
     </main>
   );

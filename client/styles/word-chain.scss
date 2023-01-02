@@ -8,3 +8,11 @@
     margin: 0 0.5rem;
   }
 }
+
+#Result {
+  display: flex;
+  align-items: center;
+  * {
+    margin: 0.5rem;
+  }
+}
