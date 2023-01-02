@@ -63,13 +63,13 @@ const App: React.FC = () => {
           ))}
           <div id="ButtonContainer">
             <Button variant="secondary" onClick={handleAdd} disabled={LIMIT <= words.length}>
-              Add
+            🐬 Add 🐬
             </Button>
             <Button variant="primary" type="submit">
-              Submit
+            🐙🐙🐙 Submit 🐙🐙🐙
             </Button>
             <Button variant="danger" type="submit" onClick={handleDelete} disabled={words.length <= 3}>
-              Delete {words.length > 1 ? words.length : ''}
+              Delete Word: {words.length > 1 ? words.length : ''}
             </Button>
           </div>
           <div id="Result">
