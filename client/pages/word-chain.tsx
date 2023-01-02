@@ -62,13 +62,13 @@ const App: React.FC = () => {
             </Form.Group>
           ))}
           <div id="ButtonContainer">
-            <Button variant="secondary" onClick={handleAdd} disabled={LIMIT <= words.length}>
+            <Button variant="secondary" type="button" onClick={handleAdd} disabled={LIMIT <= words.length}>
             🐬 Add 🐬
             </Button>
             <Button variant="primary" type="submit">
             🐙🐙🐙 Submit 🐙🐙🐙
             </Button>
-            <Button variant="danger" type="submit" onClick={handleDelete} disabled={words.length <= 3}>
+            <Button variant="danger" type="button" onClick={handleDelete} disabled={words.length <= 3}>
               Delete Word: {words.length > 1 ? words.length : ''}
             </Button>
           </div>
