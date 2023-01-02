@@ -1,7 +1,7 @@
 
 const setting = {
   isProd: process.env.NODE_ENV === 'production',
-  basePath: '/simple-next-study.ssg.ts/'
+  basePath: '/word-chain.py/'
 };
 
 export default setting;
