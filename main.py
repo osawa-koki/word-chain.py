@@ -24,32 +24,19 @@ class WordChainRequest(BaseModel):
 
 # Define a route to handle the /api URL
 @app.post("/api/word-chain")
-def find_longest_word_chain(request: WordChainRequest):
-    # create the LP problem
-    model = pulp.LpProblem("Longest Word Chain", pulp.LpMaximize)
+def find_longest_word_chain(words: WordChainRequest) -> List[str]:
+    words = words.words
+    n = len(words)
+    longest_chain = []
+    for i in range(n):
+        chain = [words[i]]
+        for j in range(i+1, n):
+            if chain[-1][-1] == words[j][0]:
+                chain.append(words[j])
+        if len(chain) > len(longest_chain):
+            longest_chain = chain
+    return longest_chain
 
-    # create variables
-    variables = {}
-    for i, word in enumerate(request.words):
-        variables[i] = pulp.LpVariable(f"x{i}", lowBound=0, upBound=1, cat='Binary')
-
-    # add the objective function
-    model += pulp.lpSum([variables[i] for i in range(len(request.words))])
-
-    # add the constraint that each word must come after the previous one
-    for i in range(1, len(request.words)):
-        model += variables[i] <= variables[i - 1]
-
-    # solve the LP
-    model.solve()
-
-    # build the word chain
-    word_chain = []
-    for i in range(len(request.words)):
-        if variables[i].value() == 1.0:
-            word_chain.append(request.words[i])
-
-    return {"word_chain": word_chain}
 
 
 # Serve static files from the "www" directory and set index.html as the default file
