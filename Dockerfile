@@ -1,5 +1,5 @@
 # Step 1: Build the Next.js app
-FROM node:18 as build-stage
+FROM node:18.11.0-alpine as build-stage
 
 # Set the working directory
 WORKDIR /app
@@ -17,13 +17,13 @@ COPY client .
 RUN npm run build
 
 # Step 2: Start the FastAPI server
-FROM python:3.11-alpine as production-stage
+FROM python:3.11.0-alpine as production-stage
 
 # Set the working directory
 WORKDIR /app
 
 # Copy the required files from the build stage
-COPY --from=build-stage /app/www /app/www
+COPY --from=build-stage /app/dist /app/www
 COPY main.py .
 COPY requirements.txt .
 
