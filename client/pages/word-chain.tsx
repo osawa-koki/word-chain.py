@@ -1,52 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { Button, Container, Form, FormControl } from 'react-bootstrap';
 
-function App() {
-  const [words, setWords] = React.useState<string[]>([]);
-  const [response, setResponse] = React.useState('');
+const App: React.FC = () => {
+  const [words, setWords] = useState([]);
+  const [response, setResponse] = useState('');
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const sendData = async () => {
+    const data = { words };
+    await fetch('/api', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+  };
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-
-    const res = await fetch('/api');
-    const data = await res.json();
-    setResponse(JSON.stringify(data));
+    sendData();
   };
 
   const handleAdd = () => {
     setWords([...words, '']);
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, index: number) => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, index: number) => {
     const newWords = [...words];
     newWords[index] = event.target.value;
     setWords(newWords);
   };
 
   return (
-    <div className="container mt-5">
-      <form onSubmit={handleSubmit}>
-        {words.map((word, index) => (
-          <div className="form-group" key={index}>
-            <label htmlFor={`word-${index}`}>Word {index + 1}:</label>
-            <input
-              type="text"
-              className="form-control"
-              id={`word-${index}`}
-              value={word}
-              onChange={(event) => handleChange(event, index)}
-            />
+    <main>
+      <Container>
+        <Form onSubmit={handleSubmit}>
+          {words.map((word, index) => (
+            <Form.Group key={index}>
+              <Form.Label>Word {index + 1}:</Form.Label>
+              <FormControl
+                type="text"
+                value={word}
+                onChange={(event) => handleChange(event, index)}
+              />
+            </Form.Group>
+          ))}
+          <div id="ButtonContainer">
+            <Button variant="outline-sccessed" onClick={handleAdd}>
+              Add
+            </Button>
+            <Button variant="primary" type="submit">
+              Submit
+            </Button>
           </div>
-        ))}
-        <button type="button" className="btn btn-secondary mr-2" onClick={handleAdd}>
-          Add
-        </button>
-        <button type="submit" className="btn btn-primary">
-          Submit
-        </button>
-      </form>
-      <pre className="mt-5">{response}</pre>
-    </div>
+        </Form>
+        <pre>{response}</pre>
+      </Container>
+    </main>
   );
-}
+};
 
 export default App;
+function useEffect(arg0: () => void) {
+  throw new Error('Function not implemented.');
+}
+
