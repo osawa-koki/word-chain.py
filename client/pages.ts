@@ -15,7 +15,11 @@ const pages = [
   {
     path: "/reference",
     name: "Reference",
-  }
+  },
+  {
+    path: "/word-chain",
+    name: "Word Chain",
+  },
 ];
 
 export default pages;
