@@ -31,6 +31,12 @@ const App: React.FC = () => {
     setWords([...words, '']);
   };
 
+  const handleDelete = () => {
+    const newWords = [...words];
+    newWords.pop();
+    setWords(newWords);
+  };
+
   const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>, index: number) => {
     const newWords = [...words];
     newWords[index] = event.target.value;
@@ -57,6 +63,9 @@ const App: React.FC = () => {
             </Button>
             <Button variant="primary" type="submit">
               Submit
+            </Button>
+            <Button variant="danger" type="submit" onClick={handleDelete} disabled={words.length <= 3}>
+              Delete {words.length > 1 ? words.length : ''}
             </Button>
           </div>
           <div id="Result">
