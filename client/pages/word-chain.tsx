@@ -12,7 +12,7 @@ const App: React.FC = () => {
   const [items, setItems] = useState<string[]>([]);
 
   useEffect(() => {
-    const words = words_template.sort(() => Math.random() - Math.random()).slice(0, 10);
+    const words = words_template.sort(() => Math.random() - Math.random()).slice(0, 20);
     setWords(words);
   }, []);
 
@@ -53,16 +53,17 @@ const App: React.FC = () => {
       <main>
         <Container>
           <Form onSubmit={handleSubmit}>
-            {words.map((word, index) => (
-              <Form.Group key={index}>
-                <Form.Label>Word {index + 1}:</Form.Label>
-                <FormControl
-                  type="text"
-                  value={word}
-                  onChange={(event) => handleChange(event, index)}
-                />
-              </Form.Group>
-            ))}
+            <div id="InputCollection">
+              {words.map((word, index) => (
+                <Form.Group key={index}>
+                  <FormControl
+                    type="text"
+                    value={word}
+                    onChange={(event) => handleChange(event, index)}
+                  />
+                </Form.Group>
+              ))}
+            </div>
             <div id="ButtonContainer">
               <Button variant="secondary" type="button" onClick={handleAdd} disabled={LIMIT <= words.length}>
               🐬 Add 🐬
@@ -71,7 +72,7 @@ const App: React.FC = () => {
               🐙🐙🐙 Submit 🐙🐙🐙
               </Button>
               <Button variant="danger" type="button" onClick={handleDelete} disabled={words.length <= 3}>
-                Delete Word: {words.length > 1 ? words.length : ''}
+                Delete Word
               </Button>
             </div>
             <div id="Result">
