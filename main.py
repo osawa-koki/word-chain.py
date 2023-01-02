@@ -21,7 +21,7 @@ port = 80
 class WordChainRequest(BaseModel):
     words: List[str]
 
-LIMIT = 30
+LIMIT = 50
 
 # Define a route to handle the /api URL
 @app.post("/api/word-chain")

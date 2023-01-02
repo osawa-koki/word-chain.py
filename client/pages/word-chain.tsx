@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container, Form, FormControl } from 'react-bootstrap';
 import { BsFillArrowRightSquareFill } from "react-icons/bs";
 
+import words_template from '../src/words';
+
+const LIMIT = 50;
+
 const App: React.FC = () => {
   const [words, setWords] = useState<string[]>([]);
   const [items, setItems] = useState<string[]>([]);
 
   useEffect(() => {
-    const randomWords = ['apple', 'banana', 'cherry', 'dog', 'elephant'];
-    setWords(randomWords.slice(0, 5));
+    const words = words_template.sort(() => Math.random() - Math.random()).slice(0, 10);
+    setWords(words);
   }, []);
 
   const sendData = async () => {
@@ -58,7 +62,7 @@ const App: React.FC = () => {
             </Form.Group>
           ))}
           <div id="ButtonContainer">
-            <Button variant="secondary" onClick={handleAdd} disabled={30 <= words.length}>
+            <Button variant="secondary" onClick={handleAdd} disabled={LIMIT <= words.length}>
               Add
             </Button>
             <Button variant="primary" type="submit">
