@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button, Container, Form, FormControl } from 'react-bootstrap';
 import { BsFillArrowRightSquareFill } from "react-icons/bs";
 
+import Layout from '../components/Layout';
 import words_template from '../src/words';
 
 const LIMIT = 50;
@@ -48,43 +49,45 @@ const App: React.FC = () => {
   };
 
   return (
-    <main>
-      <Container>
-        <Form onSubmit={handleSubmit}>
-          {words.map((word, index) => (
-            <Form.Group key={index}>
-              <Form.Label>Word {index + 1}:</Form.Label>
-              <FormControl
-                type="text"
-                value={word}
-                onChange={(event) => handleChange(event, index)}
-              />
-            </Form.Group>
-          ))}
-          <div id="ButtonContainer">
-            <Button variant="secondary" type="button" onClick={handleAdd} disabled={LIMIT <= words.length}>
-            🐬 Add 🐬
-            </Button>
-            <Button variant="primary" type="submit">
-            🐙🐙🐙 Submit 🐙🐙🐙
-            </Button>
-            <Button variant="danger" type="button" onClick={handleDelete} disabled={words.length <= 3}>
-              Delete Word: {words.length > 1 ? words.length : ''}
-            </Button>
-          </div>
-          <div id="Result">
-            {
-              items.map((item, index) => (
-                <>
-                  <p key={index}>{item}</p>
-                  <BsFillArrowRightSquareFill />
-                </>
-              ))
-            }
-          </div>
-        </Form>
-      </Container>
-    </main>
+    <Layout>
+      <main>
+        <Container>
+          <Form onSubmit={handleSubmit}>
+            {words.map((word, index) => (
+              <Form.Group key={index}>
+                <Form.Label>Word {index + 1}:</Form.Label>
+                <FormControl
+                  type="text"
+                  value={word}
+                  onChange={(event) => handleChange(event, index)}
+                />
+              </Form.Group>
+            ))}
+            <div id="ButtonContainer">
+              <Button variant="secondary" type="button" onClick={handleAdd} disabled={LIMIT <= words.length}>
+              🐬 Add 🐬
+              </Button>
+              <Button variant="primary" type="submit">
+              🐙🐙🐙 Submit 🐙🐙🐙
+              </Button>
+              <Button variant="danger" type="button" onClick={handleDelete} disabled={words.length <= 3}>
+                Delete Word: {words.length > 1 ? words.length : ''}
+              </Button>
+            </div>
+            <div id="Result">
+              {
+                items.map((item, index) => (
+                  <>
+                    <p key={index}>{item}</p>
+                    <BsFillArrowRightSquareFill />
+                  </>
+                ))
+              }
+            </div>
+          </Form>
+        </Container>
+      </main>
+    </Layout>
   );
 };
 
