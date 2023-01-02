@@ -15,6 +15,11 @@ const App: React.FC = () => {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    const randomWords = ['apple', 'banana', 'cherry', 'dog', 'elephant'];
+    setWords(randomWords.slice(0, 5));
+  }, []);
+
   const sendData = async () => {
     const data = { words };
     await fetch('/api', {
