@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import pulp
+from typing import List
 
 app = FastAPI()
 
@@ -19,7 +20,7 @@ host = "0.0.0.0"
 port = 80
 
 class WordChainRequest(BaseModel):
-    words: list[str]
+    words: List[str]
 
 # Define a route to handle the /api URL
 @app.post("/api/word-chain")
