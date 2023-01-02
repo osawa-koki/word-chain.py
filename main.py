@@ -5,6 +5,14 @@ import pulp
 
 app = FastAPI()
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Set the host and port values
 host = "0.0.0.0"
 port = 80
