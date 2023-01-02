@@ -16,7 +16,7 @@ const App: React.FC = () => {
     const response = await fetch('/api/word-chain', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      body: JSON.stringify(data.words.filter((word) => word !== '')),
     });
     const result = await response.json();
     setItems(result);
