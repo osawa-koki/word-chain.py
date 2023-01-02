@@ -1,9 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container, Form, FormControl } from 'react-bootstrap';
 
 const App: React.FC = () => {
-  const [words, setWords] = useState([]);
+  const [words, setWords] = useState<string[]>([]);
   const [response, setResponse] = useState('');
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('/api');
+      const data = await res.json();
+      setResponse(JSON.stringify(data));
+    };
+
+    fetchData();
+  }, []);
 
   const sendData = async () => {
     const data = { words };
@@ -44,7 +54,7 @@ const App: React.FC = () => {
             </Form.Group>
           ))}
           <div id="ButtonContainer">
-            <Button variant="outline-sccessed" onClick={handleAdd}>
+            <Button variant="secondary" onClick={handleAdd}>
               Add
             </Button>
             <Button variant="primary" type="submit">
@@ -59,7 +69,3 @@ const App: React.FC = () => {
 };
 
 export default App;
-function useEffect(arg0: () => void) {
-  throw new Error('Function not implemented.');
-}
-
