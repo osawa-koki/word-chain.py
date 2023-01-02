@@ -4,16 +4,7 @@ import { BsFillArrowRightSquareFill } from "react-icons/bs";
 
 const App: React.FC = () => {
   const [words, setWords] = useState<string[]>([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await fetch('/api');
-      const data = await res.json();
-      setWords(data.words);
-    };
-
-    fetchData();
-  }, []);
+  const [items, setItems] = useState<string[]>([]);
 
   useEffect(() => {
     const randomWords = ['apple', 'banana', 'cherry', 'dog', 'elephant'];
@@ -22,11 +13,13 @@ const App: React.FC = () => {
 
   const sendData = async () => {
     const data = { words };
-    await fetch('/api/word-chain', {
+    const response = await fetch('/api/word-chain', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data),
     });
+    const result = await response.json();
+    setItems(result);
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -68,9 +61,9 @@ const App: React.FC = () => {
           </div>
           <div id="Result">
             {
-              words.map((word, index) => (
+              items.map((item, index) => (
                 <>
-                  <p key={index}>{word}</p>
+                  <p key={index}>{item}</p>
                   <BsFillArrowRightSquareFill />
                 </>
               ))
