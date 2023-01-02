@@ -18,5 +18,5 @@ uvicorn main:app
 Dockerを使用すると、、、  
 
 ```shell
-docker build -t word-chain-py . && docker run -p 80:80 --name my-word-chain-py word-chain-py
+docker build -t word-chain-py . && docker run -it --rm -p 80:80 --name my-word-chain-py word-chain-py
 ```
