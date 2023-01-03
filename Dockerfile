@@ -18,6 +18,7 @@ RUN yarn build
 
 # Step 2: Start the FastAPI server
 FROM python:3.11.0-alpine as production-stage
+EXPOSE 80
 
 # Set the working directory
 WORKDIR /app
