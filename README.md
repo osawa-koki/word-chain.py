@@ -14,7 +14,7 @@ Pythonで最長しりとりを探してみる。
 ## 実行方法
 
 ```shell
-uvicorn main:app
+python main.py
 ```
 
 Dockerを使用すると、、、  
