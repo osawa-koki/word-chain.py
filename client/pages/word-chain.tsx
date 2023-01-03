@@ -68,6 +68,7 @@ const App: React.FC = () => {
   return (
     <Layout>
       <main>
+        <h1>🐙 Word-Chain 🐙</h1>
         <Container>
           <Form onSubmit={handleSubmit}>
             <div id="InputCollection">
