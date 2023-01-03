@@ -5,7 +5,7 @@ import { BsFillArrowRightSquareFill } from "react-icons/bs";
 import Layout from '../components/Layout';
 import { fruits, reserved_words, fish, animals } from '../src/words';
 
-const LIMIT = 50;
+const LIMIT = 100;
 
 const App: React.FC = () => {
 
