@@ -2,6 +2,8 @@
 
 Pythonで最長しりとりを探してみる。  
 
+![成果物](./.development/img/fruit.gif)  
+
 ## 環境情報
 
 | 機能 | バージョン |

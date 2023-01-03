@@ -40,8 +40,6 @@ def find_longest_word_chain(words: WordChainRequest) -> List[str]:
             longest_chain = chain
     return longest_chain
 
-
-
 # Serve static files from the "www" directory and set index.html as the default file
 app.mount("/api", app)
 app.mount("/", StaticFiles(directory="www", html=True), name="www")
