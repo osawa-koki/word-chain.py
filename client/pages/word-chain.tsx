@@ -100,7 +100,7 @@ const App: React.FC = () => {
               <FormControl
                 type="number"
                 value={count}
-                onChange={(event) => setCount(event.target.value)}
+                onChange={(event) => setCount(parseInt(event.target.value))}
               />
             </div>
             <div id="Result">
