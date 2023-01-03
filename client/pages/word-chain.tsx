@@ -3,16 +3,18 @@ import { Button, Container, Form, FormControl } from 'react-bootstrap';
 import { BsFillArrowRightSquareFill } from "react-icons/bs";
 
 import Layout from '../components/Layout';
-import words_template from '../src/words';
+import { fruits, reserved_words, fish, animals } from '../src/words';
 
 const LIMIT = 50;
 
 const App: React.FC = () => {
+
+  const [count, setCount] = useState(30);
   const [words, setWords] = useState<string[]>([]);
   const [items, setItems] = useState<string[]>([]);
 
   useEffect(() => {
-    const words = words_template.sort(() => Math.random() - Math.random()).slice(0, 30);
+    const words = fruits.sort(() => Math.random() - Math.random()).slice(0, count);
     setWords(words);
   }, []);
 
@@ -48,6 +50,21 @@ const App: React.FC = () => {
     setWords(newWords);
   };
 
+  const SetTemplate = (template: string) => {
+    if (template === 'fruits') {
+      setWords(fruits.sort(() => Math.random() - Math.random()).slice(0, count));
+    }
+    if (template === 'reserved_words') {
+      setWords(reserved_words.sort(() => Math.random() - Math.random()).slice(0, count));
+    }
+    if (template === 'fish') {
+      setWords(fish.sort(() => Math.random() - Math.random()).slice(0, count));
+    }
+    if (template === 'animals') {
+      setWords(animals.sort(() => Math.random() - Math.random()).slice(0, count));
+    }
+  };
+
   return (
     <Layout>
       <main>
@@ -74,6 +91,17 @@ const App: React.FC = () => {
               <Button variant="danger" type="button" onClick={handleDelete} disabled={words.length <= 3}>
                 Delete Word
               </Button>
+            </div>
+            <div id='Template'>
+              <Button variant="outline-success" type="button" onClick={() => {SetTemplate('fruits')}}>🍉果物🍊</Button>
+              <Button variant="outline-secondary" type="button" onClick={() => {SetTemplate('reserved_words')}}>💻予約語🖥</Button>
+              <Button variant="outline-primary" type="button" onClick={() => {SetTemplate('fish')}}>🐠魚🐟</Button>
+              <Button variant="outline-warning" type="button" onClick={() => {SetTemplate('fish')}}>🐶動物🦁</Button>
+              <FormControl
+                type="number"
+                value={count}
+                onChange={(event) => setCount(event.target.value)}
+              />
             </div>
             <div id="Result">
               {

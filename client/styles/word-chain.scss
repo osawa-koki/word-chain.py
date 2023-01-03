@@ -20,6 +20,17 @@
   }
 }
 
+#Template {
+  display: flex;
+  justify-content: space-between;
+  margin: 1rem 0;
+  border: 3px lightgray double;
+  padding: 0.5rem;
+  input {
+    max-width: 5rem;
+  }
+}
+
 #Result {
   margin: 1.5rem 0;
   display: flex;
