@@ -32,4 +32,4 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 
 # Set the default command to start the FastAPI server
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["python", "main.py"]
